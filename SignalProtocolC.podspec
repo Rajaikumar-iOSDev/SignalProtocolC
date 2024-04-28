@@ -29,10 +29,17 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/signalapp/libsignal-protocol-c.git",
   					 				 :tag => 'v' + s.version.to_s}
+  s.module_map = 'SignalProtocolC/SignalProtocolC.h'
 
   s.source_files  = ["src/**/*.{h,c}"]
   s.exclude_files = 'src/curve25519/ed25519/main'
   s.public_header_files = ["src/signal_protocol.h", "src/signal_protocol_types.h", "src/curve.h", "src/hkdf.h", "src/ratchet.h", "src/protocol.h", "src/session_state.h", "src/session_record.h", "src/session_pre_key.h", "src/session_builder.h", "src/session_cipher.h", "src/key_helper.h", "src/sender_key.h", "src/sender_key_state.h", "src/sender_key_record.h", "src/group_session_builder.h", "src/group_cipher.h", "src/fingerprint.h"]
+ s.frameworks   = ['UIKit', 'Foundation'] # Specify any system frameworks needed
 
-  s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/SignalProtocolC/src $(PODS_ROOT)/SignalProtocolC/src/curve25519 $(PODS_ROOT)/SignalProtocolC/src/curve25519/ed25519 $(PODS_ROOT)/SignalProtocolC/src/protobuf-c' }
+   # xcconfig settings
+  s.xcconfig = {
+    'HEADER_SEARCH_PATHS' => '"$(PODS_ROOT)/SignalProtocolC/src" "$(PODS_ROOT)/SignalProtocolC/src/curve25519" "$(PODS_ROOT)/SignalProtocolC/src/curve25519/ed25519" "$(PODS_ROOT)/SignalProtocolC/src/protobuf-c"',
+    'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
+    'DEFINES_MODULE' => 'YES', # This line tells Xcode to treat this as a module
+  }
 end
