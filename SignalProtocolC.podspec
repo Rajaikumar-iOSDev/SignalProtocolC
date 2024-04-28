@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
 
   s.source_files  = ["src/**/*.{h,c}"]
   s.exclude_files = 'src/curve25519/ed25519/main'
-  s.public_header_files = ["src/signal_protocol.h", "src/signal_protocol_types.h", "src/curve.h", "src/hkdf.h", "src/ratchet.h", "src/protocol.h", "src/session_state.h", "src/session_record.h", "src/session_pre_key.h", "src/session_builder.h", "src/session_cipher.h", "src/key_helper.h", "src/sender_key.h", "src/sender_key_state.h", "src/sender_key_record.h", "src/group_session_builder.h", "src/group_cipher.h", "src/fingerprint.h"]
+  s.public_header_files = "SignalProtocolC/SignalProtocolC.h" 
  s.frameworks   = ['UIKit', 'Foundation'] # Specify any system frameworks needed
 
    # xcconfig settings
